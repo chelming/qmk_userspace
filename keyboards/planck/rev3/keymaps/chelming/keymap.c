@@ -115,7 +115,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_FN] = LAYOUT_planck_grid(
     FN_CAD,  KC_S1,   KC_S2,   _______, _______, _______, _______, _______, _______, _______, _______, KC_DEL,
     _______, _______, _______, _______, _______, _______, _______, FN_SCN,  FN_SCE,  FN_GIF,  FN_MOV,  _______,
-    _______, BACKLIT, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+    _______, BL_STEP, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
     _______, _______, _______, _______, _______, _______, _______, _______, KC_HOME, KC_PGDN, KC_PGUP, KC_END
 ),
 
@@ -155,17 +155,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       if (record->event.pressed) {
         print("mode just switched to qwerty and this is a huge string\n");
         set_single_persistent_default_layer(_QWERTY);
-      }
-      return false;
-      break;
-    case BACKLIT:
-      if (record->event.pressed) {
-        register_code(KC_RSFT);
-        #ifdef BACKLIGHT_ENABLE
-          backlight_step();
-        #endif
-      } else {
-        unregister_code(KC_RSFT);
       }
       return false;
       break;

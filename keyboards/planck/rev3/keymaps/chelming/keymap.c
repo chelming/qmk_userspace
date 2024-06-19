@@ -33,6 +33,7 @@ enum planck_layers {
 #define FN_ENT SFT_T(KC_ENT) 
 #define FN_SS  LGUI(LSFT(KC_S))
 #define FN_CAD LALT(LCTL(KC_DEL))
+#define FN_CAP LALT(LCTL(KC_PAUS))
 #define FN MO(_FN)
 #define FN_SCN MEH(KC_P)
 #define FN_SCE MEH(KC_E)
@@ -139,20 +140,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 ),
 
 /* Adjust (Lower + Raise)
- *                      v------------------------RGB CONTROL--------------------v
+ *                      
  * ,-----------------------------------------------------------------------------------.
  * |      |Reset |Debug |      |      |      |      |      |      |      |      |  Del |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      |      |      |      |      |      |      |Qwerty|      |      |      |      |
+ * |      |      |      |      | CAP  |      |      |Qwerty|      |      |      |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * |      |      |      |      |      |      |      |      |      |      |      |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      |      |      |      |      |             |      |      |      |      |      |
+ * |      |      |      |      |      |      |      |      |      |      |      |      |
  * `-----------------------------------------------------------------------------------'
  */
 [_ADJUST] = LAYOUT_planck_grid(
-    _______, QK_BOOT, DB_TOGG, _______, _______, _______, _______, _______, _______, _______, _______, KC_DEL ,
-    _______, _______, _______, _______, _______, _______, _______, QWERTY,  _______, _______, _______, _______,
+    _______, QK_BOOT, DB_TOGG, _______, _______, _______, _______, _______, _______, _______, _______, KC_DEL,
+    _______, _______, _______, _______, FN_CAP,  _______, _______, QWERTY,  _______, _______, _______, _______,
     _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
     _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
 )
@@ -165,6 +166,8 @@ const uint16_t PROGMEM SD[] = {KC_S, KC_D, COMBO_END};
 const uint16_t PROGMEM KL[] = {KC_K, KC_L, COMBO_END};
 const uint16_t PROGMEM DF[] = {KC_D, KC_F, COMBO_END};
 const uint16_t PROGMEM JK[] = {KC_J, KC_K, COMBO_END};
+const uint16_t PROGMEM ENT[] = {KC_J, KC_K, KC_L, COMBO_END};
+const uint16_t PROGMEM TAB[] = {KC_S, KC_D, KC_F, COMBO_END};
 combo_t key_combos[] = {
   COMBO(AS, KC_LPRN),
   COMBO(SEMIL, KC_RPRN),
@@ -172,6 +175,8 @@ combo_t key_combos[] = {
   COMBO(KL, KC_RBRC),
   COMBO(DF, KC_LCBR),
   COMBO(JK, KC_RCBR),
+  COMBO(ENT, KC_ENT),
+  COMBO(JK, KC_TAB),
 };
 
 layer_state_t layer_state_set_user(layer_state_t state) {
